@@ -4,7 +4,7 @@
 {{#if this.filteredPeople}}
   <ul>
     {{#each this.filteredPeople as |peepl|}}
-      <li>{{peepl}}</li>
+      <li>{{peepl.fullName}}</li>
     {{/each}}
   </ul>
 {{else}}
