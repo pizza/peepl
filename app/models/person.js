@@ -1,15 +1,9 @@
-import { tracked } from '@glimmer/tracking';
+import Model, { attr } from '@ember-data/model';
 
-export default class PersonModel{
-  @tracked firstName;
-  @tracked lastName;
-  @tracked birthday;
-
-  constructor(firstName, lastName, birthday) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.birthday = birthday;
-  }
+export default class PersonModel extends Model {
+  @attr firstName;
+  @attr lastName;
+  @attr birthday;
 
   get fullName() {
     return `${this.firstName} ${this.lastName}`;

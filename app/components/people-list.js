@@ -1,23 +1,31 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { A } from '@ember/array';
-import PersonModel from '../models/person';
+import { inject as service } from '@ember/service';
 
 export default class CounterComponent extends Component {
+  @service store;
+
   @tracked nameFilter = '';
-  @tracked people = A([]);
 
   constructor() {
     super(...arguments);
-    this.people.pushObject(new PersonModel('Karim', 'Frenn', '13/10/1992'));
+    this.store.createRecord('person', {
+      firstName: 'John',
+      lastName: 'Doe',
+      birthday: '10/10/1990',
+    });
   }
 
   get filteredPeople() {
-    return this.people.filter(person => person.fullName.toLowerCase().includes(this.nameFilter.toLowerCase()));
+    return this.args.people.filter(person => person.fullName.toLowerCase().includes(this.nameFilter.toLowerCase()));
   }
 
   @action createPerson() {
-    this.people.pushObject(new PersonModel(this.nameFilter, 'Frenn', '13/10/1992'));
+    this.store.createRecord('person', {
+      firstName: this.nameFilter,
+      lastName: 'Something',
+      birthday: '10/10/1990',
+    });
   }
 }
