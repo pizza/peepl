@@ -1,0 +1,12 @@
+<Input id="site" @value={{this.nameFilter}} @placeholder="Search for a person" />
+<br>
+
+{{#if this.filteredPeople}}
+  <ul>
+    {{#each this.filteredPeople as |peepl|}}
+      <li>{{peepl}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <button type="button" {{on "click" this.createPerson}}>Create person '{{this.nameFilter}}'</button>
+{{/if}}
