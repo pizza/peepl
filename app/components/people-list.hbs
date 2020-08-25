@@ -9,16 +9,26 @@ Counts for debugging:
   <li>There are {{@people.length}} people (value of @people.length)</li>
 </ul>
 
-Iterating over @people:
+1) Iterating over @people:
+<br><span class="result">This seems to work as expected</span>
 <ul>
   {{#each @people as |person|}}
     <li>{{person.fullName}}</li>
   {{/each}}
 </ul>
 
-Iterating over this.filteredPeople:
+2) Iterating over this.filteredPeople:
+<br><span class="result">This doesn't seem to work at all</span>
 <ul>
   {{#each this.filteredPeople as |person|}}
+    <li>{{person.fullName}}</li>
+  {{/each}}
+</ul>
+
+3) Iterating over (filter-by "fullName" this.nameFilter @people):
+<br><span class="result">This works if I type the full name 'John Doe' in the text input above</span>
+<ul>
+  {{#each (filter-by "fullName" this.nameFilter @people) as |person|}}
     <li>{{person.fullName}}</li>
   {{/each}}
 </ul>
