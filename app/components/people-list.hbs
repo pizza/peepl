@@ -1,12 +1,24 @@
 <Input id="site" @value={{this.nameFilter}} @placeholder="Search for a person" />
-<br>
+<br><br>
+<button type="button" {{on "click" this.createPerson}}>Create person '{{this.nameFilter}}'</button>
+<br><br>
 
-{{#if this.filteredPeople}}
-  <ul>
-    {{#each this.filteredPeople as |peepl|}}
-      <li>{{peepl.fullName}}</li>
-    {{/each}}
-  </ul>
-{{else}}
-  <button type="button" {{on "click" this.createPerson}}>Create person '{{this.nameFilter}}'</button>
-{{/if}}
+Counts for debugging:
+<ul>
+  <li>There are {{@people.content.length}} people (value of @people.content.length)</li>
+  <li>There are {{@people.length}} people (value of @people.length)</li>
+</ul>
+
+Iterating over @people:
+<ul>
+  {{#each @people as |person|}}
+    <li>{{person.fullName}}</li>
+  {{/each}}
+</ul>
+
+Iterating over this.filteredPeople:
+<ul>
+  {{#each this.filteredPeople as |person|}}
+    <li>{{person.fullName}}</li>
+  {{/each}}
+</ul>
