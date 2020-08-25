@@ -2,7 +2,12 @@ import Route from '@ember/routing/route';
 
 export default class ApplicationRoute extends Route {
   model() {
-    console.log('The model hook just ran!');
+     this.store.createRecord('person', {
+      firstName: 'John',
+      lastName: 'created in application.js',
+      birthday: '10/10/1990',
+    });
+
     return this.store.peekAll('person');
   }
 }

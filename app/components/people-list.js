@@ -8,13 +8,8 @@ export default class CounterComponent extends Component {
 
   @tracked nameFilter = '';
 
-  constructor() {
-    super(...arguments);
-    this.store.createRecord('person', {
-      firstName: 'John',
-      lastName: 'Doe',
-      birthday: '10/10/1990',
-    });
+ get peopleCount() {
+    return this.args.people.length;
   }
 
   get filteredPeople() {
@@ -24,7 +19,7 @@ export default class CounterComponent extends Component {
   @action createPerson() {
     this.store.createRecord('person', {
       firstName: this.nameFilter,
-      lastName: 'Something',
+      lastName: 'created using button',
       birthday: '10/10/1990',
     });
   }
